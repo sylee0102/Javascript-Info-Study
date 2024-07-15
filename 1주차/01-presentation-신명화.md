@@ -131,7 +131,7 @@ alert(message);
     console.log(x); // ReferenceError: x is not defined
     ```
     
-    그럼 이렇게 쓰면 ?
+    그럼 이렇게 쓰면 `?
     
     ```jsx
     function test() {
@@ -389,6 +389,15 @@ alert( null >= 0 ); // (3) true
 
 //기타 비교 연산자의 동작 원리에 따라 null이 숫자형으로 변환돼 0이 된다.
 ```
+
+`point` - 형 변환 종류 
+1. 문자열 변환 
+2. 숫자변환
+3. 불리언 변환
+4. 객체 변환
+5. 비교연산자와 타입강제 변환
+6. 논리 연산자와 타입 강제 변환 
+
 
 # 2.10 [if와 '?'를 사용한 조건 처리](https://ko.javascript.info/ifelse)
 
