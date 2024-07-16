@@ -23,3 +23,36 @@ if ((answer = "Admin")) {
     alert("canceled");
   }
 }
+
+let a = +prompt("a?", "");
+
+switch (a) {
+  case a == 0:
+    alert(0);
+    break;
+  case a == 1:
+    alert(1);
+    break;
+  case a == 2 || a == 3:
+    alert("2,3");
+    break;
+}
+
+function checkAge(age) {
+  age > 18 ? true : confirm("보호자 동의?");
+}
+
+function checkAge(age) {
+  return age > 18 || confirm("보호자 동의?");
+}
+
+function min(a, b) {
+  if (a < b) {
+    return a;
+  } else {
+    return b;
+  }
+}
+function min(a, b) {
+  return a < b ? a : b;
+}

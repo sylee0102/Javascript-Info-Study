@@ -230,3 +230,62 @@ condition(조건)이 truthy 이면 반복문 본문의 코드가 실행됩니다
 for 안에있는걸 반복.
 
 지시자인 break를 사용하면 언제든 원하는 때에 반복문을 빠져나올 수 있습니다.
+
+# switch 문
+
+switch문은 하나 이상의 case문으로 구성
+switch문은 일치 비교로 조건을 확인합니다. 비교하려는 값과 case문의 값의 형과 값이 같아야 해당 case문이 실행됩니다.
+
+# 함수
+
+alert(message), prompt(message, default), confirm(question)
+
+## 매개변수 기본값
+
+`function showMessage(from, text = "no text given") {}`
+
+- 논리 연산자 ||를 사용해 매개변수 기본값을 설정
+
+```jsx
+function showMessage(from, text) {
+  // text의 값이 falsy면 기본값이 할당됨
+  // 이 방식은 text == ""일 경우, text에 값이 전달되지 않은것과 같다고 간주합니다..
+  text = text || 'no text given';
+  ...
+}
+```
+
+- nullish 병합 연산자(nullish coalescing operator) ??를 사용하면 0처럼 falsy로 평가되는 값들을 일반 값처럼 처리
+
+```jsx
+// 매개변수 'count'가 `undefined` 또는 `null`이면 'unknown'을 출력해주는 함수
+function showCount(count) {
+  alert(count ?? "unknown");
+}
+
+showCount(0); // 0
+showCount(null); // unknown
+showCount(); // unknown
+```
+
+지시자 return만 명시하는 것도 가능합니다. 이런 경우는 함수가 즉시 종료됩니다.
+
+```jsx
+function showMovie(age) {
+  if (!checkAge(age)) {
+    return;
+  }
+
+  alert("영화 상영"); // (*)
+  // ...
+}
+```
+
+# 함수 이름짓기
+
+"show"로 시작하는 함수는 대개 무언가를 보여주는 함수입니다.
+
+"get…" – 값을 반환함
+"calc…" – 무언가를 계산함
+"create…" – 무언가를 생성함
+"check…" – 무언가를 확인하고 불린값을 반환함
