@@ -77,6 +77,13 @@ prompt 함수는 두 개의 인수를 받습니다.
   입력 필드의 초깃값(선택값)
   대괄호 [...]의 의미
 
+## parameter default 설정
+
+parameter 에 default 설정해놓으면 argument 에 undefined 들어가면 default 나오게 할수있다.
+
+즉, `name(a,b=0)` 으로 parameter 를 설정해 놓으면
+을 `name(1,undefind)` 으로 argument 를 undefined 혹은 빈값으로 보내면 default 0 이 출력된다.
+
 ## confirm
 
 사용자가 확인 또는 취소 버튼을 누를 때까지 메시지가 창에 보여집니다. 사용자가 확인 버튼을 누르면 true를, 취소 버튼이나 Esc를 누르면 false를 반환합니다.
