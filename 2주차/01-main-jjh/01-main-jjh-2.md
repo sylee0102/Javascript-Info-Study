@@ -183,3 +183,15 @@ alert( n.toFixed(2) ); // 1.23
 #### IEEE 754
 
 컴퓨터에서 부동 소수점 숫자를 표현하고 계산하는 데 사용되는 국제 표준입니다.
+
+#### parseInt와 parseFloat
+
+parseInt는 정수, parseFloat는 부동 소수점 숫자를 반환
+
+```
+alert( parseInt('100px') ); // 100
+alert( parseFloat('12.5em') ); // 12.5
+
+alert( parseInt('12.3') ); // 12, 정수 부분만 반환됩니다.
+alert( parseFloat('12.3.4') ); // 12.3, 두 번째 점에서 숫자 읽기를 멈춥니다.
+```
