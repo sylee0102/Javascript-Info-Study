@@ -1,0 +1,731 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>JavaScript - 04</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3d9ef7d9-c0ad-44a9-a98a-1f52d1bd4bb1" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/code_gray.svg"/></div><h1 class="page-title">JavaScript - 04</h1><p class="page-description"></p></header><div class="page-body"><ol type="1" id="bf784e4e-f182-4156-a15a-dd78b804654f" class="numbered-list" start="2024"><li>08. 09</li></ol><hr id="08be4bbb-177a-4c3d-9085-31d6faa7f39b"/><blockquote id="4507a73a-e19e-4b75-a8f6-1cf1703773f1" class="">JavaScript Info</blockquote><ul id="0f9b0c1a-7578-4124-93e7-61b72b1a021e" class="toggle"><li><details open=""><summary>함수 심화학습</summary><p id="9273b7d4-2c7f-419c-90af-d3d2280ae7bc" class=""><mark class="highlight-default">6.3 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/closure">변수의 유효범위와 클로저</a></mark><mark class="highlight-default"> ✅ (클로저/렉시컬환경)</mark></p><p id="3fa38811-a204-46f2-ae06-0107cd9d03cf" class=""><mark class="highlight-default">6.4 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/var">오래된 var</a></mark><mark class="highlight-default"> ✅ (호이스팅/스코프)</mark></p><p id="8d58cdd8-2f13-4e14-9497-a31a24fdcf76" class=""><mark class="highlight-default">6.5 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/global-object">전역 객체</a></mark></p><p id="eb7d3ed6-53eb-43af-9d80-31ad37c81e13" class=""><mark class="highlight-default">6.6 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/function-object">객체로서의 함수와 기명 함수 표현식</a></mark></p><p id="9db37220-631e-4af3-8a91-a268063c0f5f" class=""><mark class="highlight-default">6.7 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/new-function">new Function 문법</a></mark></p><p id="afd895e4-f470-49c1-a7fe-97596a794f36" class=""><mark class="highlight-default">6.8 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/settimeout-setinterval">setTimeout과 setInterval을 이용한 호출 스케줄링</a></mark><mark class="highlight-default"> ✅</mark></p><p id="c54ca941-c30c-4a9d-97cb-ae7bf8883324" class=""><mark class="highlight-default">6.9 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/call-apply-decorators">call/apply와 데코레이터, 포워딩</a></mark></p><p id="5a7a0653-2442-4186-9de7-192192fae2f8" class=""><mark class="highlight-default">6.10 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/bind">함수 바인딩</a></mark></p><p id="27521e8f-657a-4332-a98f-9bf1f38c60f4" class=""><mark class="highlight-default">6.11 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/arrow-functions">화살표 함수 다시 살펴보기</a></mark></p></details></li></ul><ul id="c6cb06a0-e2b7-4934-b795-1e1d19096e8f" class="toggle"><li><details open=""><summary>객체 프로퍼티 설정</summary><p id="4c30fd38-4a44-41b0-a275-20cade4a5d00" class=""><mark class="highlight-default">7.1 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/property-descriptors">프로퍼티 플래그와 설명자</a></mark></p><p id="fed7d14d-0cb1-4768-aad3-95fff650dee0" class=""><mark class="highlight-default">7.2 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/property-accessors">프로퍼티 getter와 setter</a></mark></p></details></li></ul><ul id="95d063ee-9bf8-4c3f-bdcd-fc03d0229a18" class="toggle"><li><details open=""><summary>프로토타입과 프로토타입 상속</summary><p id="37aa7402-b2f5-4bfe-ac5b-36d7a4aecc1d" class=""><mark class="highlight-default">8.1 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/prototype-inheritance">프로토타입 상속</a></mark></p><p id="c97c53e6-022e-4cde-bf89-635d2d0e15a6" class=""><mark class="highlight-default">8.2 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/function-prototype">함수의 prototype 프로퍼티</a></mark></p><p id="0f183dce-da8f-4451-95b9-bcba648c0169" class=""><mark class="highlight-default">8.3 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/native-prototypes">내장 객체의 프로토타입</a></mark><mark class="highlight-default"> ✅</mark></p><p id="317b4416-5251-407a-98b1-51fd03ded619" class=""><mark class="highlight-default">8.4 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/prototype-methods">프로토타입 메서드와 __proto__가 없는 객체</a></mark></p></details></li></ul><p id="4f8a442d-16e9-4306-a639-ca923b9a8cc3" class="">
+</p><blockquote id="9a6fed26-f6ea-436a-9b64-8fa505f279d6" class="">Index</blockquote><ul id="bdd37481-1dfe-48a3-a950-1971d0084d3b" class="toggle"><li><details open=""><summary>함수 심화학습</summary><ul id="baab968c-b177-4fde-bc41-ad43e3018413" class="block-color-default bulleted-list"><li style="list-style-type:disc">변수의 유효범위와 클로저 ✔️ (클로저/렉시컬환경)</li></ul><ul id="ef0f89c0-e350-4334-a92d-e177df4e3a8b" class="bulleted-list"><li style="list-style-type:disc">오래된 var ✔️ (호이스팅/스코프)</li></ul><ul id="14500bfa-1764-4abe-9137-fa934bddb33b" class="bulleted-list"><li style="list-style-type:disc">전역 객체</li></ul><ul id="761a2bb1-0b7f-4fd8-96f7-6233583bf18a" class="bulleted-list"><li style="list-style-type:disc">객체로서의 함수와 기명 함수 표현식</li></ul><ul id="2079826b-37ab-480d-afe1-94b84206371e" class="bulleted-list"><li style="list-style-type:disc">new Function 문법</li></ul><ul id="45c9d710-0350-4e3f-828c-0e585f3d1ef2" class="bulleted-list"><li style="list-style-type:disc">setTimeout과 setInterval을 이용한 호출 스케줄링 ✔️</li></ul><ul id="28f484f2-aa4b-4a85-8c2c-727f53de547b" class="bulleted-list"><li style="list-style-type:disc">call / apply 와 데코레이터, 포워딩</li></ul><ul id="4a9df628-b255-425c-8bb2-6edbf430cd68" class="bulleted-list"><li style="list-style-type:disc">함수 바인딩</li></ul><ul id="25644ff3-dca8-4fc6-8e82-917094efb739" class="bulleted-list"><li style="list-style-type:disc">화살표 함수 다시 살펴보기</li></ul></details></li></ul><ul id="4a4759da-7c5f-4ea6-b938-27372173d3b4" class="toggle"><li><details open=""><summary>객체 프로퍼티 설정</summary><ul id="c0a7acc6-21cf-423b-a7e6-3b2b783048ec" class="bulleted-list"><li style="list-style-type:disc">프로퍼티 플래그와 설명자</li></ul><ul id="60b9b3d5-55c7-4c5c-879a-10c0b53f3982" class="bulleted-list"><li style="list-style-type:disc">프로퍼티 getter와 setter</li></ul></details></li></ul><ul id="2f21b2d5-336e-4739-8b8b-a3863268a663" class="toggle"><li><details open=""><summary>프로토타입과 프로토타입 상속</summary><ul id="396774c0-71cb-421c-8694-4a152faee930" class="bulleted-list"><li style="list-style-type:disc">프로토타입 상속</li></ul><ul id="9aeab5db-2084-4dc9-a1d9-1c3d3fc790ff" class="bulleted-list"><li style="list-style-type:disc">함수의 prototype 프로퍼티</li></ul><ul id="2c337d91-93b8-4856-a659-7e1bc2b23ccf" class="bulleted-list"><li style="list-style-type:disc">내장 객체의 프로토타입 ✔️</li></ul><ul id="2b8a103f-60c6-4bb5-9df1-159272d4e467" class="bulleted-list"><li style="list-style-type:disc">프로토타입 메서드와  <strong>prot</strong>가 없는 객체</li></ul><p id="21d605ef-5ae6-49a9-8e6b-c2e7d9f96593" class="">
+</p></details></li></ul><ul id="e66d5b06-9cac-470f-a552-1d81e0cb8f24" class="bulleted-list"><li style="list-style-type:disc">❓질문내용 정리❓</li></ul><p id="7ff57477-b4ca-41c8-a791-0a3e841267cb" class="">
+</p><h1 id="9292157c-36b4-4e91-8e99-d609e5edb03f" class="">📌  변수의 유효범위와 클로저</h1><p id="f13f2645-3d7a-44bc-ac6a-a44c621086cc" class="">
+</p><p id="5c9d8ddc-d683-4134-b6c1-dcf5c3234961" class=""> ⚠️ 이미 선언된 변수와 동일한 이름을 가진 변수를 별도의 블록 없이 <code>let</code>으로 선언하면 에러가 발생</p><p id="e182776a-0a04-4b33-b640-07e399084d0b" class=""> ⚠️  <code>if</code>, <code>for</code>, <code>while</code> 등에서도 마찬가지로 <code>{...}</code> 안에서 선언한 변수는 오직 블록 안에서만 접근 가능</p><p id="249195a4-12b7-452c-938b-283ef042720a" class="">
+</p><blockquote id="14f0ac87-acf9-4b8d-b4bc-7cd4473ba52d" class="">중첩 함수</blockquote><p id="0b14345b-ebc4-4bcb-9d10-d9826e47ecff" class="">함수 내부에서 선언한 함수는 ‘중첩(nested)’ 함수라고 부른다</p><ul id="a7f9f192-e964-4ef3-a1c2-6daa82eda901" class="bulleted-list"><li style="list-style-type:disc">중첩 함수는 코드를 정돈하는데 사용 됨</li></ul><p id="bfc9c67a-3b0b-4af3-9753-cfb2005fdd1d" class="">
+</p><blockquote id="c4542595-57ec-4635-b986-38c030fd8c05" class="">렉시컬 환경</blockquote><ol type="1" id="a8f79198-85f8-42f5-9a4a-79cf1e22ff16" class="numbered-list" start="1"><li><mark class="highlight-yellow_background"><strong>변수</strong></mark> - 특수 내부 객체인 <code>환경 레코드</code> 의 프로퍼티. ‘변수를 가져오거나 변경’하는 것은 ‘환경 레코드의 프로퍼티를 가져오거나 변경’함을 의미</li></ol><ol type="1" id="563a48ad-e6ee-4e4e-b459-ae9cbf052bc5" class="numbered-list" start="2"><li><mark class="highlight-yellow_background"><strong>함수 선언문</strong></mark> - 함수 선언문으로 선언한 함수는 일반 변수와는 달리 바로 초기화 됨</li></ol><ol type="1" id="9d5b4576-006c-4942-be2f-e25bdaca1236" class="numbered-list" start="3"><li><mark class="highlight-yellow_background"><strong>내부와 외부 렉시컬 환경</strong></mark> - 함수를 호출해 실행하면 새로운 렉시컬 환경이 자동으로 만들어짐. 이 렉시컬 환경엔 함수 호출 시 넘겨받은 매개변수와 함수의 지역 변수가 저장 됨</li></ol><ol type="1" id="98794703-0d1b-4b3e-b535-19ade4191f9f" class="numbered-list" start="4"><li><mark class="highlight-yellow_background"><strong>함수를 반환하는 함수</strong></mark></li></ol><p id="c431fefa-daf0-42bc-b980-0c96b68e4c8f" class="">
+</p><blockquote id="524004e2-0242-41b2-9c9b-85094f3e6c66" class="">가비지 컬렉션</blockquote><p id="fe885404-4b8b-416b-afd3-cd737fb8d371" class="">함수 호출이 끝나면 함수에 대응하는 렉시컬 환경이 메모리에서 제거 됨<br/>함수와 관련된 변수들은 이때 모두 사라지는데 함수 호출이 끝나면 관련 변수를 참조할 수 없는 이유는 자바스크립트에서 모든 객체는 도달 가능한 상태일 때만 메모리에 유지 되기 때문<br/></p><p id="e896222a-4f04-4e08-b91b-0e7e9375f9b8" class="">
+</p><h1 id="bd81378c-d779-4a48-8a81-abdb174d9bd8" class="">📌  <strong>오래된 var</strong></h1><h3 id="1be3a32a-baed-4177-85e0-28356467a528" class="">변수의 세 가지 방법</h3><ol type="1" id="d263e2a7-b962-403b-82f7-1c7cea1540da" class="numbered-list" start="1"><li><code>let</code></li></ol><ol type="1" id="b4ed3926-81db-4076-8845-21c401d468a1" class="numbered-list" start="2"><li><code>const</code></li></ol><ol type="1" id="85944fa3-bd2f-4d59-a774-46cd47b3305c" class="numbered-list" start="3"><li><code>var</code></li></ol><p id="b0302c19-8fed-4b5f-929f-8ef05d8ecc5f" class="">
+</p><blockquote id="b0d23680-cb25-4cb4-88c3-8e880f895b57" class="block-color-default"><strong>var는 블록 스코프가 없다</strong></blockquote><p id="2cef4a10-0e00-421e-ae5f-935f6c4f18e7" class=""><code>var</code>로 선언한 변수의 스코프는 함수 스코프이거나 전역 스코프이다.<br/>블록 기준으로 스코프가 생기지 않기 때문에 블록 밖에서 접근 가능<br/></p><p id="88dab556-1652-44c4-b836-134165d868de" class="">
+</p><blockquote id="8e3f0225-736e-454e-982a-09c3716174de" class="block-color-default"><strong>var는 변수의 중복 선언을 허용</strong></blockquote><ul id="0de4e8e9-aec7-418a-8f0b-2ac55f145d80" class="bulleted-list"><li style="list-style-type:disc">한 스코프에서 같은 변수를 <code>let</code>으로 두 번 선언하면 에러가 발생한다.</li></ul><ul id="fc12f6b0-f545-4132-a66f-159f31061b16" class="bulleted-list"><li style="list-style-type:disc"><code>var</code>로 같은 변수를 여러 번 중복으로 선언할 수 있지만, 이미 선언한 변수에 <code>var</code> 를 사용하면 두번째 선언문은 무시된다</li></ul><p id="ac217242-3783-4e39-9bc0-b199f5f26ebb" class="">
+</p><blockquote id="2e03ab31-3b12-4a03-a794-8283a2d9de79" class="block-color-default"><strong>선언하기 전 사용할 수 있는 var</strong></blockquote><ul id="e9b77ccd-9651-4315-89e3-204c951d45b0" class="bulleted-list"><li style="list-style-type:disc"><code>var</code> 선언은 함수가 시작될 때 처리 되고, 전역에서 선언한 변수라면 스크립트가 시작될 때 처리된다.</li></ul><ul id="49a09fd3-5233-4083-abe1-0ac6cbbe2762" class="bulleted-list"><li style="list-style-type:disc">함수 본문 내에서 <code>var</code>로 선언한 변수는 선언 위치와 상관없이 함수 본문이 시작되는 지점에서 정의됨<br/>(단, 변수가 중첩 함수 내에서 정의되지 않아야 이 규칙이 적용된다)<br/></li></ul><p id="cf0aea2a-c176-4604-9634-592c435d5d32" class="">
+</p><p id="8ec96f4c-433c-4775-8551-da1fb2f92466" class="">
+</p><h1 id="af868792-56e0-476d-8d36-7a8d1063f0f2" class="">📌  전역 객체</h1><ul id="87d92757-a677-4142-ae27-2d3818c4d62f" class="bulleted-list"><li style="list-style-type:disc">전역 객체를 사용하면 어디서든 접근 가능한 변수를 만들 수 있음<ul id="58e0ced1-739a-4ced-a808-f1108a8513a9" class="bulleted-list"><li style="list-style-type:circle">전역 객체엔 <code>Array</code> 와 같은 내장 객체, <code>window. innerHeight</code> (뷰포트의 높이를 반환함)같은 브라우저 환경 전용 변수등이 저장되어있음</li></ul></li></ul><ul id="7416a40c-d1a5-457f-a1fd-11731440210b" class="bulleted-list"><li style="list-style-type:disc">전역 객체는 <code>globalThis</code>라는 이름으로 부름<ul id="5625e28e-a3bd-4db1-ab85-3e9a9ef5194d" class="bulleted-list"><li style="list-style-type:circle">하지만 &#x27;관습’에 따라 브라우저에서는 <code>window</code>, Node.js에서는 <code>global</code>이라는 이름으로 불리움</li></ul></li></ul><ul id="88fad21d-7667-4cf9-b645-560f5e8b0071" class="bulleted-list"><li style="list-style-type:disc">프로젝트 전체에서 꼭 필요한 변수만 전역 객체에 저장하도록 하고, 전역 변수는 가능한 최소한으로 사용하기</li></ul><p id="c3e112da-320a-4681-9f49-ff1d29822bd1" class="">
+</p><p id="7581bf58-0953-41db-8429-8c1302323aa1" class="">
+</p><h1 id="6aa28e0d-087f-4271-ac96-b93aa016a83b" class="">📌  <strong>객체로서의 함수와 기명 함수 표현식</strong></h1><h3 id="8c2fca25-dbe5-4e99-afb6-dd40c63a0b1a" class="">함수 = 객체</h3><ul id="9eb0cc29-df75-45cc-87b8-55c4f8e4ea25" class="bulleted-list"><li style="list-style-type:disc"><code>name</code> – 함수의 이름이 저장<br/>대개는 함수 선언부에서 이름을 가져오는데, 선언부에 이름이 없는 경우엔 자바스크립트 엔진이 컨텍스트<br/>(할당 등)를 이용해 이름을 추론 함<br/></li></ul><ul id="c773c463-518b-4acb-b2fd-76142b41be7d" class="bulleted-list"><li style="list-style-type:disc"><code>length</code> – 함수 선언부에 있는 인수의 수로 나머지 매개변수는 포함되지 않음</li></ul><p id="32a44012-1594-4059-bacd-c17fb5f671b4" class="">
+</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="8a9a1489-3cbc-48a3-bd1f-d6c5f29a88e1"><div style="font-size:1.5em"><span class="icon">📖</span></div><div style="width:100%">함수 표현식으로 함수를 정의하였는데 이름이 있다면 이를 기명 함수 표현식이라 부름<br/>기명 함수 표현식의 이름은 재귀 호출 같이 함수 내부에서 자기 자신을 호출하고자 할 때 사용할 수 있음<br/></div></figure><p id="29847431-d2cb-4aaa-95c2-b679efc5cafe" class="">
+</p><blockquote id="5a635d13-356c-4a87-9dc5-86e6ddd92f31" class="block-color-default">‘name’ 프로퍼티</blockquote><p id="6054d4e3-1d9c-421b-919d-bdc76edc1d23" class="">함수 객체엔 몇 가지 프로퍼티가 있고, ‘name’ 프로퍼티를 사용하면 함수 이름을 가져올 수 있다.</p><p id="4e3ccba3-29b5-47a8-8ac6-4e3bd0dc3d2e" class="">
+</p><blockquote id="1dcdc692-95d3-4b27-8868-37e2328bdc93" class="block-color-default">‘length’ 프로퍼티</blockquote><p id="a3b6b663-d089-4924-8c24-87cf46592b4e" class="">내장 프로퍼티 <code>length</code>는 함수 매개변수의 개수를 반환</p><p id="7b37dc4f-ffdf-489c-84b0-644ad86e9faa" class="">
+</p><blockquote id="eb39ddf4-7e7a-4bf2-86fa-bf27c52b000d" class="block-color-default">기명 함수 표현식</blockquote><p id="574027c8-882a-43e0-83c8-3bd5d0ad3030" class="">기명 함수 표현식(Named Function Expression, NFE)은 이름이 있는 함수 표현식을 나타내는 용어</p><p id="d2cb0f86-eae6-4d18-a32b-ee10ce448394" class="">
+</p><p id="5f83a225-3b86-40d9-a147-65631eb76017" class="">
+</p><h1 id="52662fb9-1e17-409c-9024-653841c96a49" class="">📌  <strong>new Function 문법</strong></h1><p id="4e564862-5a7b-40ee-9150-6bad581965e4" class="">
+</p><blockquote id="6ad6fb86-a7cd-47ad-9305-2de5654a4d75" class="">문법</blockquote><p id="0a68ba16-0896-4342-b551-19e51d30ae48" class=""><code>new Function</code> 문법을 사용하면 함수를 만들 수 있다.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7a886a72-f39e-4e57-87aa-c69f27b76dee" class="code"><code class="language-JavaScript">let func = new Function ([arg1, arg2, ...argN], functionBody);</code></pre><p id="48566aca-b85e-4689-a690-ade0d1b79706" class="">
+</p><p id="3ec52efe-9183-4ef5-b297-e8cfde840cbc" class="">
+</p><h1 id="ae73fa4d-63d7-41b6-90f2-fb857aabf450" class="">📌  setTimeout과 setInterval을 이용한 호출 스케줄링</h1><p id="a84adf17-caf8-4144-a0b1-f322bb2741fa" class="">일정 시간이 지난 후에 원하는 함수를 예약 실행(호출)할 수 있게 하는 것</p><p id="d22d105c-fcf0-4492-8def-39cb81e8f223" class="">
+</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="f4954a9f-ee0e-4a31-90ba-ba28edcf72b8"><div style="font-size:1.5em"><span class="icon">📖</span></div><div style="width:100%">호출 스케줄링을 구현하는 두 가지 방법</div></figure><ul id="2a2e1f66-8f62-476e-a674-cd738106e88a" class="bulleted-list"><li style="list-style-type:disc"><code>setTimeout</code>을 이용해 일정 시간이 지난 후에 함수를 실행하는 방법</li></ul><ul id="343df686-bc47-4549-bce2-e182db076b08" class="bulleted-list"><li style="list-style-type:disc"><code>setInterval</code>을 이용해 일정 시간 간격을 두고 함수를 실행하는 방법</li></ul><p id="74f93e79-907f-4eb4-a932-74944127fd76" class="">
+</p><blockquote id="bf074c32-d1d4-4e7e-ad43-a7bf060de823" class=""><strong>setTimeout</strong></blockquote><ul id="0b47ba4d-57ba-4cc6-97d6-80a6be69112d" class="bulleted-list"><li style="list-style-type:disc"><code><strong>func|code</strong></code><p id="30614be0-d663-4bb7-be34-e44308ed7344" class="">실행하고자 하는 코드로, 함수 또는 문자열 형태이다. 대개는 이 자리에 함수가 들어가고, 하위 호환성을 위해 문자열도 받을 수 있게 해놓았지만 추천하지 않음</p></li></ul><ul id="385a1d53-e9d5-4ca7-aee1-cdb5fceeacc4" class="bulleted-list"><li style="list-style-type:disc"><code><strong>delay</strong></code><p id="3bf7b4bf-6f8b-4e27-942f-45d9c33bfeaf" class="">실행 전 대기 시간으로, 단위는 밀리초(millisecond, 1000밀리초 = 1초)이며 기본값은 0</p></li></ul><ul id="fa9eaaef-428d-47e6-a6dd-5b4b94eeea49" class="bulleted-list"><li style="list-style-type:disc"><code><strong>arg1</strong></code><strong>, </strong><code><strong>arg2</strong></code><strong>…</strong><p id="b3d79274-fe6b-48ea-8988-bebb5acc9dc8" class="">함수에 전달할 인수들로, IE9 이하에선 지원하지 않음</p></li></ul><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="30d2736c-b4f6-42f3-9f71-33c5b3255e80"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><code>setTimeout</code>을 호출하면 &#x27;타이머 식별자(timer identifier)&#x27;가 반환되고, 스케줄링을 취소하고 싶을 땐 이 식별자 <code>timerId</code>를 사용하면 됨</div></figure><p id="6d46f8bc-26c6-4e57-8d0c-6d74df23eed0" class="">
+</p><blockquote id="6dfd5174-c705-40ec-8543-be5f6b5403b4" class=""><strong>setInterval</strong></blockquote><p id="4235219d-ad75-4d7f-82cf-25e3de4a612a" class=""><code>setInterval</code> 메서드는 <code>setTimeout</code>과 동일한 문법을 사용</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="38961300-ed50-4c17-a3d9-00866dd3a81d"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">함수 호출을 중단하려면 <code>clearInterval(timerId)</code>을 사용하면 됨</div></figure><p id="5dad84f1-06ea-43e6-8f8a-19b041d0fde8" class="">
+</p><blockquote id="3fe4b697-7e61-4a11-838b-ef7c3f509e63" class=""><strong>중첩 setTimeout</strong></blockquote><p id="af639aa1-aa93-49d8-9ca0-544714f774d2" class="">간격을 두고 실행하는 방법 1. <code>setInterval</code>을 이용 2. 중첩 <code>setTimeout</code>을 이용</p><p id="ad67dd5d-f405-48a3-8cbf-99dd7633829c" class="">📍 <strong>중첩 </strong><code><strong>setTimeout</strong></code><strong>을 이용하는 방법은 지연 간격을 보장하지만 </strong><code><strong>setInterval</strong></code><strong>은 이를 보장하지 않습니다.</strong></p><p id="cb5dcd0f-6734-4a4a-8637-5f60ff286b6b" class="">
+</p><p id="e083a298-e8ba-446b-bdf2-4c3078383c8f" class="">
+</p><h1 id="86e60f6e-aaa8-47c3-ac4c-c11d3662c13c" class="">📌  <strong>call / apply와 데코레이터, 포워딩</strong></h1><p id="e70e5d0f-1630-4fb3-b8ac-53727c9e0010" class=""><strong>데코레이터는 함수를 감싸는 래퍼로 함수의 행동을 변화시키고, 주요 작업은 함수에서 처리한다.</strong></p><p id="5cf66236-46b4-43da-b5ba-e2a3eefa0e65" class="">
+</p><p id="d3738fd3-6d07-4314-a7fb-0fe65e32dac2" class=""><code>cachingDecorator</code>는 아래와 같은 메서드를 사용해 구현함</p><ul id="90afc59e-5619-4118-acfa-65b4b1a89046" class="bulleted-list"><li style="list-style-type:disc"><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/call">func.call(context, arg1, arg2…)</a> – 주어진 컨텍스트와 인수를 사용해 <code>func</code>를 호출합니다.</li></ul><ul id="249d786c-3316-4b2c-bcad-87b70f50fb86" class="bulleted-list"><li style="list-style-type:disc"><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">func.apply(context, args)</a> – <code>this</code>에 <code>context</code>가 할당되고, 유사 배열 <code>args</code>가 인수로 전달되어 <code>func</code>이 호출됩니다.</li></ul><p id="40a29fab-6ff4-4c75-a6c6-47bada3c76c7" class="">
+</p><p id="ce9aa96d-ec3b-4e68-9f04-07ccf9f4fde9" class=""><em>콜 포워딩</em>은 대개 <code>apply</code>를 사용해 구현</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="64ce82ef-ae11-4425-98c6-90baf81f1a8e" class="code"><code class="language-JavaScript">let wrapper = function() {
+  return original.apply(this, arguments);
+};</code></pre><p id="97f8c9b6-b0e5-4aae-a603-f2b645ce2511" class="">
+</p><p id="f175ab98-3d6f-4574-a2e1-04c0fae4a58c" class="">
+</p><h1 id="b4d72443-8d8f-4bfc-99a7-b1215dbc0f98" class="">📌  함수 바인딩</h1><blockquote id="1e597c22-e4df-4e62-a1df-2a0840128633" class=""><strong>사라진 ‘this’</strong></blockquote><p id="0599ce4f-62b8-4661-a9a2-a0471f965e86" class="block-color-purple_background"><strong> 메서드를 전달할 때, 컨텍스트도 제대로 유지하는 방법</strong></p><ol type="1" id="7e3a946a-d468-49dd-8d55-eb9424311ede" class="numbered-list" start="1"><li><strong>래퍼</strong><p id="4de23b9a-d393-44d1-be0c-23b72a9f1050" class="">래퍼 함수를 사용하는 것이 가장 간단하지만, 취약성이 생기기 때문에 <code>setTimeout</code> 이 트리거 되기 전에 <code>user</code>가 변경되면, 변경된 객체의 메서드를 호출하게 됨</p></li></ol><ol type="1" id="81c029d6-f3b4-4585-b2b0-0c32e86b0902" class="numbered-list" start="2"><li><strong>bind</strong><p id="5cb646b5-c8ff-4130-b0bc-96c3a9ebbbd8" class="">모든 함수는 <code>this</code>를 수정하게 해주는 내장 메서드 bind를 제공</p><ul id="ad401fdd-96dd-46da-a903-1dd6559135f5" class="bulleted-list"><li style="list-style-type:disc"><code>func.bind(context)</code> 는 함수처럼 호출 가능한 ‘특수 객체’를 반환 &gt; 이 객체를 호출하면 <code>this</code>가 <code>context</code>로 고정된 함수  <code>func</code>가 반환됨<br/>따라서 <br/><code>boundFunc</code>를 호출하면 <code>this</code>가 고정된 <code>func</code>를 호출하는 것과 동일한 효과를 봄</li></ul></li></ol><p id="5e8e5641-2433-40e0-84b2-776344dc696e" class="">
+</p><p id="dcdcc854-6226-4473-a86f-ce8478b29946" class="">
+</p><h1 id="36dacb03-6c15-4973-beec-cb6d60480516" class="">📌  화살표 함수 다시 살펴보기</h1><p id="168f503d-2931-4d96-8e69-6c2f107c33d8" class="">
+</p><blockquote id="3d5dcd03-e4cd-4989-8704-25887d790397" class=""><strong>화살표 함수에는 ‘this’가 없습니다</strong></blockquote><p id="e0717e26-a022-4962-97af-a51bd115e516" class="">화살표 함수 본문에서 <code>this</code>에 접근하면, 외부에서 값을 가져온다.</p><p id="d391ebbd-a7d6-460a-bfc9-0da5c09a5d05" class="">
+</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="d46ae96a-95c4-4f93-b548-81d45c33966a"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">화살표 함수는 <code>new</code>와 함께 실행할 수 없습니다.</div></figure><p id="a7245bb6-d8cd-42a1-bce9-9f2f56d296e4" class="">
+</p><blockquote id="7511ad66-8957-4b00-92d6-62ec44545447" class=""><strong>화살표 함수에는 ‘arguments’가 없습니다</strong></blockquote><p id="957c79c8-2812-4d4e-be5a-22e94d0c0db9" class="">화살표 함수는 일반 함수와는 다르게 모든 인수에 접근할 수 있게 해주는 유사 배열 객체 <code>arguments</code>를 지원 X</p><p id="52d4e4e3-24a8-4704-bccd-d81b8fd64c3e" class="">
+</p><p id="1f1c2ca5-5ec0-4b60-a654-39a0f9e51bd8" class="">
+</p><h1 id="67fc3761-4efa-42a7-b1fa-5d6fce11d346" class="">📌  프로퍼티 플래그와 설명자</h1><p id="3762ae8e-9a79-420b-937c-b1beb8c2df1a" class="">
+</p><blockquote id="1499ba04-86e0-4efb-b44b-2d4d0cff8576" class=""><strong>프로퍼티 플래그</strong></blockquote><p id="51142037-03e5-445f-b6b0-c3cdd12d6927" class="">객체 프로퍼티는  <code>값(value)</code>과 함께 플래그(flag)라 불리는 특별한 속성 세 가지를 갖음</p><ul id="856b3f8f-5607-4f65-9cf5-891445316f05" class="bulleted-list"><li style="list-style-type:disc"><code><strong>writable</strong></code> – <code>true</code>이면 값을 수정할 수 있고, 그렇지 않다면 읽기만 가능</li></ul><ul id="2bc7e327-fe88-4750-a141-5f0aa44f56db" class="bulleted-list"><li style="list-style-type:disc"><code><strong>enumerable</strong></code> – <code>true</code>이면 반복문을 사용해 나열할 수 있고, 그렇지 않다면 반복문을 사용해 나열할 수 있음</li></ul><ul id="1ba1e4e8-1a60-4233-925a-067c0e4b2d5c" class="bulleted-list"><li style="list-style-type:disc"><code><strong>configurable</strong></code> – <code>true</code>이면 프로퍼티 삭제나 플래그 수정이 가능하고, 그렇지 않다면 프로퍼티 삭제와 플래그 수정이 불가능</li></ul><p id="74abd58b-1990-42b6-9cee-90f0ff6b8f17" class="">
+</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="b2a422dd-ed56-4540-b9c4-42ef644d189a"><div style="font-size:1.5em"><span class="icon">👉🏻</span></div><div style="width:100%">Object.getOwnPropertyDescriptor 메서드를 사용하면 특정 프로퍼티에 대한 정보를 얻을 수 있다</div></figure><blockquote id="ffbd2a5c-56eb-4c62-a63e-f691105111af" class="">문법</blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c5ea0471-3063-4ce4-a522-5d2bddffd61c" class="code"><code class="language-JavaScript">let descriptor = Object.getOwnPropertyDescriptor(obj, propertyName);</code></pre><p id="bc07cebd-0676-4ae1-b8aa-c6f5829de1c6" class=""><code><strong>obj</strong></code><strong> - </strong>정보를 얻고자 하는 객체</p><p id="c92cc2e2-f80b-4172-b339-6a9b97c501da" class=""><code><strong>propertyName</strong></code><strong> - </strong>정보를 얻고자 하는 객체 내 프로퍼티</p><p id="4e7ea6bb-a20e-4b11-a324-d286bb16ef40" class="">
+</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="f10ea9a6-9585-491d-81f5-4ac58b309d40"><div style="font-size:1.5em"><span class="icon">👉🏻</span></div><div style="width:100%">Object.defineProperty를 사용하면 플래그를 변경할 수 있다</div></figure><blockquote id="7c6ae047-ead9-4802-a160-012335d82bce" class="">문법</blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4143cc30-dbfa-4690-9548-d7691c2e027f" class="code"><code class="language-JavaScript">Object.defineProperty(obj, propertyName, descriptor)</code></pre><p id="53a57734-3cbf-480f-9fa7-ff206818a28e" class=""><code><strong>obj</strong></code><strong>, </strong><code><strong>propertyName</strong></code><strong> - </strong>설명자를 적용하고 싶은 객체와 객체 프로퍼티</p><p id="13132a53-40cf-41cc-b3c5-25300a34c6fc" class=""><code><strong>descriptor</strong></code><strong> - </strong>적용하고자 하는 프로퍼티 설명자</p><p id="daf97edd-60d2-49e2-b5f8-9d78dd12019c" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
