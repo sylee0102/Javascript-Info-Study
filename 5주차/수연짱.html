@@ -1,0 +1,717 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>JavaScript - 05</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="389392f8-85e7-4147-89cd-fbf519d38f59" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/code_gray.svg"/></div><h1 class="page-title">JavaScript - 05</h1><p class="page-description"></p></header><div class="page-body"><ol type="1" id="1c219c97-5f62-41bf-be1d-5cfa89a28fcc" class="numbered-list" start="2024"><li>08. 14</li></ol><hr id="f8a689af-8f82-4143-9a1b-4057dd0a3f01"/><blockquote id="6419a910-6bea-45b9-9468-40dda6b25ec3" class="">JavaScript Info</blockquote><ul id="62b01cc3-b165-44d1-9dfa-c0a955197e0a" class="toggle"><li><details open=""><summary>에러 핸들링</summary><p id="391b2b12-8aad-4c71-a8a1-e40fcfbd7be6" class=""><mark class="highlight-default">10.1 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/try-catch">&#x27;try..catch&#x27;와 에러 핸들링</a></mark></p><p id="a6105349-83cb-4956-ba13-04a4a0baf74b" class=""><mark class="highlight-default">10.2 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/custom-errors">커스텀 에러와 에러 확장</a></mark></p></details></li></ul><ul id="69972098-b8b7-45da-b0b9-c011be458085" class="toggle"><li><details open=""><summary>프라미스와 async, await</summary><p id="1cf35903-9828-4599-98a4-4e4fa332b01c" class=""><mark class="highlight-default">11.1 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/callbacks">콜백</a></mark><mark class="highlight-default"> ✅</mark></p><p id="68f36fdf-d63f-4446-aed9-c7f458a3a62f" class=""><mark class="highlight-default">11.2 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/promise-basics">프라미스</a></mark><mark class="highlight-default"> ✅</mark></p><p id="661c6691-73dd-42d4-a031-6f467e69859a" class=""><mark class="highlight-default">11.3 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/promise-chaining">프라미스 체이닝</a></mark><mark class="highlight-default"> ✅</mark></p><p id="c2ab20e0-9825-4847-85bb-e1353a3a8289" class=""><mark class="highlight-yellow_background">11.4 </mark><mark class="highlight-yellow_background"><a href="https://ko.javascript.info/promise-error-handling">프라미스와 에러 핸들링</a></mark><mark class="highlight-yellow_background"> ✅</mark></p><p id="dffae55c-f517-4906-aa8f-656bf52dfd90" class=""><mark class="highlight-yellow_background">11.5 </mark><mark class="highlight-yellow_background"><a href="https://ko.javascript.info/promise-api">프라미스 API</a></mark><mark class="highlight-yellow_background"> ✅</mark></p><p id="fd4c0e3b-447f-4aef-93c5-f497204df45e" class=""><mark class="highlight-yellow_background">11.6 </mark><mark class="highlight-yellow_background"><a href="https://ko.javascript.info/promisify">프라미스화</a></mark><mark class="highlight-yellow_background"> ✅</mark></p><p id="7fe7944a-fd75-4448-9eb5-7b41bafde509" class=""><mark class="highlight-yellow_background">11.7 </mark><mark class="highlight-yellow_background"><a href="https://ko.javascript.info/microtask-queue">마이크로태스크</a></mark></p><p id="120da975-410b-48e6-8e09-bfe7073b96c8" class=""><mark class="highlight-default">11.8 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/async-await">async와 await</a></mark><mark class="highlight-default"> ✅</mark></p></details></li></ul><ul id="4e00d076-45dd-49c5-aa56-ef23e573f039" class="toggle"><li><details open=""><summary>모듈</summary><p id="f77436a9-9c75-4830-98af-daf898e2c681" class=""><mark class="highlight-default">13.1 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/modules-intro">모듈 소개</a></mark></p><p id="d052019e-397e-4873-8d71-ad7ef78d32fc" class=""><mark class="highlight-default">13.2 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/import-export">모듈 내보내고 가져오기</a></mark></p><p id="6b759054-b107-4b90-a4ce-8d35cf9d30a0" class=""><mark class="highlight-default">13.3 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/modules-dynamic-imports">동적으로 모듈 가져오기</a></mark></p></details></li></ul><ul id="8da3db5e-0a78-48d6-8139-81070fe05ffd" class="toggle"><li><details open=""><summary>기타</summary><p id="2b39ac0d-f2b5-4c8d-bdac-b2d94a0f414e" class=""><mark class="highlight-default">14.1 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/proxy">Proxy와 Reflect</a></mark><mark class="highlight-default"> 🔨</mark></p><p id="bae8131a-7aa8-4055-9fca-cbadec904769" class=""><mark class="highlight-default">14.2 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/eval">Eval : 문자열 코드 실행하기</a></mark></p><p id="7827420f-98fd-4600-a545-df22e8ec56bc" class=""><mark class="highlight-default">14.3 </mark><mark class="highlight-default"><a href="https://ko.javascript.info/currying-partials">커링</a></mark><mark class="highlight-default"> 🔨</mark></p></details></li></ul><p id="8c7a1552-4455-4233-af90-17ef2412c80c" class="">
+</p><blockquote id="08e28755-6e07-440c-95e0-9f085ed1f0e5" class="">Index</blockquote><ul id="ea213847-b9be-4c04-b5f0-513a10bcff7f" class="toggle"><li><details open=""><summary>에러 핸들링</summary><ul id="8b7ac8bb-7975-485e-9591-f4dae108957b" class="block-color-default bulleted-list"><li style="list-style-type:disc">‘try…catch’와 에러 핸들링</li></ul><ul id="17becded-a528-4eb0-b1a2-4c39d8774549" class="bulleted-list"><li style="list-style-type:disc">커스텀 에러와 에러 확장</li></ul></details></li></ul><ul id="2fce001a-3cad-4a0a-bc38-80af03b74528" class="toggle"><li><details open=""><summary>프라미스와 async, await</summary><ul id="961a88fb-8801-485a-b53c-fc3f118e45de" class="bulleted-list"><li style="list-style-type:disc">콜백 ✔️</li></ul><ul id="3abc1615-e96a-4d2f-b19b-f08f3e21595e" class="bulleted-list"><li style="list-style-type:disc">프라미스 ✔️</li></ul><ul id="9c8183ed-a23f-4a10-a70e-dd72b987f5c1" class="bulleted-list"><li style="list-style-type:disc">프라미스 체이닝 ✔️</li></ul><ul id="b2bdb7c6-9ec4-473c-90a2-83cc898de393" class="bulleted-list"><li style="list-style-type:disc">프라미스와 에러 핸들링 ✔️</li></ul><ul id="47a30e17-65a9-4da1-89cf-f24c0be93166" class="bulleted-list"><li style="list-style-type:disc">프라미스 API ✔️</li></ul><ul id="ffeaacea-1f25-4f87-bdd6-6f5bb75c8974" class="bulleted-list"><li style="list-style-type:disc">프라미스화 ✔️</li></ul><ul id="3e4876aa-3ed9-4715-8615-838a598d82b4" class="bulleted-list"><li style="list-style-type:disc">마이크로태스크</li></ul><ul id="a71d2441-79d4-4c87-bba1-7cd6d0340b14" class="bulleted-list"><li style="list-style-type:disc">async와 await ✔️</li></ul></details></li></ul><ul id="927b410f-bb93-4856-86a7-187d9c0d5c37" class="toggle"><li><details open=""><summary>모듈</summary><ul id="83f2b2c2-1e9f-4da9-a30e-58b04ff9280e" class="bulleted-list"><li style="list-style-type:disc">모듈 소개</li></ul><ul id="80aa8efd-cc0b-454a-b321-dc206c9dae85" class="bulleted-list"><li style="list-style-type:disc">모듈 내보내고 가져오기</li></ul><ul id="ccb1e4c7-32b1-41b5-a050-cc276b6b1d81" class="bulleted-list"><li style="list-style-type:disc">동적으로 모듈 가져오기</li></ul></details></li></ul><ul id="79e26832-1c44-4a99-bd18-2805d72fb870" class="toggle"><li><details open=""><summary>기타</summary><ul id="68ac5d3e-f595-44fe-b10f-9a13650ce20a" class="bulleted-list"><li style="list-style-type:disc">Proxy와 Reflect <mark class="highlight-default">🔨</mark></li></ul><ul id="88845deb-727e-434e-b731-4b8ea2e36070" class="bulleted-list"><li style="list-style-type:disc">Eval : 문자열 코드 실행하기</li></ul><ul id="fbcdcf4d-16fb-4ecb-b75c-1dafc23536a7" class="bulleted-list"><li style="list-style-type:disc">커링 <mark class="highlight-default">🔨</mark></li></ul></details></li></ul><ul id="51101f35-8c3b-40d2-a350-e32b5a52f75f" class="bulleted-list"><li style="list-style-type:disc">❓질문내용 정리❓</li></ul><p id="de2f575c-671e-45ea-8356-d5cdc3615e07" class="">
+</p><p id="ae03ff43-7128-496e-ab05-663f063bd7bb" class="">
+</p><h1 id="9c4c9551-c05b-47f8-a317-1b6c52964796" class="">📌  프라미스와 에러 핸들링</h1><p id="3c4714fd-f645-443b-8a78-7fd65f60709b" class="">프라미스가 거부되었을 때 rejection 핸들러로 넘어가기 때문에 <mark class="highlight-yellow"><strong>프라미스 체인</strong></mark><strong>을 사용하면 에러 처리가 가능</strong></p><p id="3f1d36e5-0161-4b2d-8cd1-cb8a01e67d27" class="">
+</p><ul id="07b02199-58b3-4949-992b-0e451730c9ff" class="bulleted-list"><li style="list-style-type:disc"><code>successHandler</code>는 프라미스가 성공적으로 이행(resolve)되었을 때 실행되는 함수입니다.</li></ul><ul id="ce5743f4-1d9d-4567-95cc-1422b9140a55" class="bulleted-list"><li style="list-style-type:disc"><code>rejectionHandler</code>는 프라미스가 거부(reject)되었을 때 실행되는 함수입니다.</li></ul><p id="e618abdd-524c-4517-a030-7971631786bb" class="">
+</p><hr id="36f1a84d-8848-44be-9228-dcb4c39d69cb"/><h2 id="0896f488-d2c3-41b2-bbeb-f2470ffd5425" class="">[수연이 설명]</h2><h3 id="02e5d0bb-dc90-494f-b6ca-678b652c6ed1" class="">🍦가정 : 아이스크림 가게에서 아이스크림을 주문했다</h3><ol type="1" id="50de643e-6b16-4f44-b093-5a1843fc0eba" class="numbered-list" start="1"><li>프라미스는 약속 : 아이스크림 가게 주인이 “곧 아이스크림을 만들어 줄게요!”라고 약속<p id="44ccbf53-d126-4667-8d25-df08c9334dc9" class="">👉🏻 이거시 바로 프라미스다!!</p></li></ol><ol type="1" id="dd7127b1-a3d2-4639-8399-b5b552627a82" class="numbered-list" start="2"><li>좋은 결과 (성공) : 아이스크림이 잘 만들어지면, 명와님은 마싯게 먹을 수 있자나여?<p id="cde36024-0a8a-40c8-9699-c3162cd8d658" class="">👉🏻 이거슨 프라미스가 잘 지켜진거예요!!</p></li></ol><ol type="1" id="51f20d3f-d17f-4d8f-bc26-d9d218624ae5" class="numbered-list" start="3"><li>나쁜 결과 (실패) : 하지만 가끔 문제가 생길 수 있쟈냐? 재료가 다 떨어졌다면?<p id="3f8a1931-41b7-4e57-b1dc-13a4737228e6" class="">👉🏻 이거슨 프라미스가 잘 지켜지지 못한거예요!!</p></li></ol><ol type="1" id="c5e124b4-4fc0-440f-8346-89b811bd8c17" class="numbered-list" start="4"><li>에러 핸들링 : 만약 아이스크림을 못 받게 되면? 돈 와리! “에라 핸들러” 라는 특별한 계획을 세움<p id="39bc73cb-8d49-4f27-9253-c0ad57f6457d" class="">👉🏻 다른 맛의 아이스크림 받거나 / 주스로 바꾸거나 / 돈 돌려받기</p><p id="cdd3dd63-7bd8-4d82-b549-d8bd567181bc" class="">그러면,,,, 당황하지않고, 대처가 가능하겠지 뭐,,,</p></li></ol><ol type="1" id="39c1cb62-16bf-4306-bf20-87ce8c02e0ef" class="numbered-list" start="5"><li>프라미스 체인 : 명와님이 아이스크림 받고, 촤카릿 시럽을 뿌려달라고 할 수 있져<p id="c3ab45a0-721f-41d6-8c18-c83108909be1" class="">👉🏻 여러단계를 연결하는 것을 후라미스 체인이라고 함</p><p id="8c6dd5d2-c823-4882-8410-fdb8871869ef" class="">
+</p></li></ol><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="e4116e8e-fa35-4c75-9f5f-47e27a0ec670"><div style="font-size:1.5em"><span class="icon">🔥</span></div><div style="width:100%">어느 단계에서든 문제가 생기면 에러 핸들러가 바로 작동해서 문제를 해결해 줄거임</div></figure><p id="13ec78fe-bc9b-49b6-91a7-b64b68020654" class="">
+</p><p id="7f475648-9b3f-4043-b328-3b1ffa14766a" class="">
+</p><h1 id="5ddf4ae5-50ae-47e2-98d6-5913b7a63ff7" class="">📌  프라미스 API</h1><p id="230f1fce-f62a-4897-bc02-fd4b25caa4aa" class=""><code><strong>Promise</strong></code><strong> 클래스의 5가지 정적 메서드</strong></p><p id="7901298c-b4a2-46a0-9431-56ad1808bd10" class="">
+</p><p id="c6c06f72-7751-474d-b69c-54a917e2b8c3" class=""><strong> </strong>⬇️ <strong>“가장 많이 사용하는 메서드” </strong>⬇️</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="81af0b4a-c900-4079-ba17-11d2b7108644"><div style="font-size:1.5em"><span class="icon">⭐</span></div><div style="width:100%"><strong>Promise.all (promises)</strong></div></figure><ul id="4ce858e1-d14a-45c3-99b9-f0f4828bb0ce" class="bulleted-list"><li style="list-style-type:disc">모든 프라미스가 이행될 때까지 기다렸다가 그 결과값을 담을 배열을 반환</li></ul><ul id="9bb221d5-51c8-4c7a-a4a8-ca033fe2381b" class="bulleted-list"><li style="list-style-type:disc">주어진 프라미스 중 하나라도 실패하면 <code>promise.all</code>은 거부, 나머지 프라미스의 결과는 무시</li></ul><p id="cb6208b8-c7fc-466a-9eaf-87547003d13a" class="">
+</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="548ed7f2-852a-47a7-8927-dad775034fd2"><div style="font-size:1.5em"><span class="icon">✅</span></div><div style="width:100%">Promise.allSettled (promises)</div></figure><ul id="b3c03a73-d897-493f-955e-597b3590a17d" class="bulleted-list"><li style="list-style-type:disc">최근에 추가 된 메서드</li></ul><ul id="62142261-eff7-4f89-92ff-2e7a68553575" class="bulleted-list"><li style="list-style-type:disc">모든 프라미스가 처리 될 때까지 기다렸다가 그 결과를 담은 배열을 반환함</li></ul><ul id="3f613e67-1aa1-486f-9c31-c7d0ba106f67" class="bulleted-list"><li style="list-style-type:disc">객체엔 아래와 같은 정보가 담김<ul id="ed27782e-ba22-4257-b25a-e190511921b1" class="bulleted-list"><li style="list-style-type:circle"><code>status</code> : <code>&quot;fulfilled&quot;</code> 또는 <code>&quot;rejected&quot;</code></li></ul><ul id="269653ac-d696-47fe-8abe-abe10717317d" class="bulleted-list"><li style="list-style-type:circle"><code>value</code> (프라미스가 성공한 경우) 또는 <code>reason</code> (프라미스가 실패한 경우)</li></ul></li></ul><p id="d98982ad-bbc8-4f05-92ab-d990cf3f7172" class="">
+</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="31fae161-cc46-473b-b41a-61fe72adb787"><div style="font-size:1.5em"><span class="icon">✅</span></div><div style="width:100%">Promise.race (promises)</div></figure><ul id="2332e213-41d7-4ba6-83fe-b148eedbcad5" class="bulleted-list"><li style="list-style-type:disc">가장 먼저 처리 된 프라미스의 결과 또는 에러를 담은 프라미스를 반환</li></ul><p id="5f249d66-ee6d-48ec-98de-05b25ca5d509" class="">
+</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="b0d012ee-a9e2-4f2b-8210-e79b0976ac7d"><div style="font-size:1.5em"><span class="icon">✅</span></div><div style="width:100%">Promise.resolve (value)</div></figure><ul id="c9bddc3c-d558-419a-a591-f19e5c7e26e0" class="bulleted-list"><li style="list-style-type:disc">주어진 값을 사용해 이행 상태의 프라미스를 만듦</li></ul><p id="07dd4d53-63f0-4cf2-8083-3386255b0e17" class="">
+</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="e7421acf-4861-48ab-8ecd-e2b27faedb9f"><div style="font-size:1.5em"><span class="icon">✅</span></div><div style="width:100%">Promise.reject (error)</div></figure><ul id="420a4bb1-8479-4109-878e-7d1a6c9c7d80" class="bulleted-list"><li style="list-style-type:disc">주어진 에러를 사용해 거부 상태의 프라미스를 만듦</li></ul><p id="d46ac367-2a2d-4963-8ad7-0c13d3fc9901" class="">
+</p><h1 id="8ee00e0a-7277-4cfe-8863-8e92a326606f" class="">📌  프라미스화</h1><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="f24030ec-c161-424d-a924-9e296f1fe7b1"><div style="font-size:1.5em"><span class="icon">✅</span></div><div style="width:100%">콜백을 받는 함수를 프라미스를 반환하는 함수로 바꾸는 것을 ‘프라미스화’라고 함</div></figure><p id="2316f098-5b91-47a7-89ab-c13b8d27c28d" class="">콜백보다 프라미스가 더 편리 👍🏻</p><p id="c6fd2c9b-fcf4-44f8-9def-41ea30fff5e0" class="">
+</p><h3 id="2172aba5-f058-49f3-a440-cf69eae8e7f0" class="">⚠️ 주의 ⚠️</h3><p id="b35b1317-8faf-4790-bdaa-e6c1d5fc81f6" class="">프라미스화는 <code>async/await</code> 와 함께 사용하면 더 👍🏻👍🏻 다만, 콜백을 완전히 대체하지는 못함을 기억하긔 🧠</p><p id="12d8d972-5003-4c49-8ab7-0ca8eae661f8" class="">👉🏻 프라미스는 하나의 결과만 가질 수 있지만, 콜백은 여러번 호출 가능</p><p id="8f6cdeb3-bd45-49d0-a1ee-6f81bca5f8c8" class="">👉🏻 프라미스화는 콜백을 단 한번 호출하는 함수에서만 적용하기! (여러번 호출해도 두 번째부터 무시 됨)</p><p id="c14b2a4d-6344-4810-b5c2-1c6da0bc6ca2" class="">
+</p><hr id="9388c1be-67fa-445c-af6e-ce9e0091dc90"/><h2 id="23c4644b-44e9-4da9-b0e4-b82bfacb068e" class="">[수연이 설명]</h2><p id="527c2e6a-13cf-42a0-a210-b0863ed67353" class="">프라미스화는 마법 지팡이를 사용하는 것과 비슷해요~</p><ol type="1" id="5199c305-83d6-4be1-9b22-109f07a5b6b6" class="numbered-list" start="1"><li><strong>마법 지팡이 </strong><mark class="highlight-blue_background"><strong>(프라미스화)</strong></mark> : 명와님이 평범한 장난감을 가지고 있는데, 이 장난감은 가만히 있는거예요<br/>근데 마법 지팽이를 가지고 있는 진님이 싸악— 치며는 이제 특별한 힘을 가지고 있는 장난감으로 변하는데 이게 <br/><mark class="highlight-blue_background"><strong>프라미스화</strong></mark>인겁니다!!</li></ol><ol type="1" id="7818be68-4b41-4969-8157-fc0baf4cf1be" class="numbered-list" start="2"><li><strong>특별한 힘 </strong><mark class="highlight-blue_background"><strong>(프라미스의 특징)</strong></mark> : <ul id="ea1b4c6f-ce0a-459d-bf9a-73a56bf23e04" class="bulleted-list"><li style="list-style-type:disc">진님의 마법의 장난감은 “나 준비됐어! 또는 “앗, 문제가 생겼어”라고 말할 수 있음</li></ul><ul id="206b3219-e0ef-4f38-9115-cb876e567acc" class="bulleted-list"><li style="list-style-type:disc">또, 진님의 잰낸갬은 동혁이의 매뱁 잰낸갬과 함께 놀 수 있음 <mark class="highlight-blue_background"><strong>(체이닝)</strong></mark></li></ul><ul id="e55defb0-7eb6-4ef5-99d2-431bc3d1e00e" class="bulleted-list"><li style="list-style-type:disc">문제가 생기면 해결사인 지현님을 바로 부를 수 이쨔냐 <mark class="highlight-blue_background"><strong>(에라 처리)</strong></mark></li></ul></li></ol><ol type="1" id="5312b4b9-1766-4a0b-a58a-cdac9166a927" class="numbered-list" start="3"><li>예시 : 수연이의 평범한 주주시크릿이 가만히 있는데, 진님의 마법 지팽이로 툭— 치며는 이제 :<ul id="e79a5d3a-2feb-48c0-8665-c4433cbf209e" class="bulleted-list"><li style="list-style-type:disc">쥬쥬 씨꼬리또가 걸을 수 있게 됨 <mark class="highlight-blue_background"><strong>(작업 시작)</strong></mark></li></ul><ul id="e0a2ffe4-364d-4510-8354-f0124f840d5e" class="bulleted-list"><li style="list-style-type:disc">걷다가 넘어지면 바로 일어날 수 있게 됨 <mark class="highlight-blue_background">(에라 처리)</mark></li></ul><ul id="2794fe9b-c808-4737-b0f3-1f392dcbc164" class="bulleted-list"><li style="list-style-type:disc">걷기가 끝나면 춤을 출 수도 있음 <mark class="highlight-blue_background"><strong>(체이닝)</strong></mark></li></ul></li></ol><ol type="1" id="53e3b481-8f04-4d91-99ef-41ea4294e8fc" class="numbered-list" start="4"><li>왜 좋을까요?<ul id="af183384-98a1-4277-bfb3-b7c908efe6fe" class="bulleted-list"><li style="list-style-type:disc">명와님의 특별해진 장난감과 수연이의 쥬쥬시끄리또 장난감은 서로 잘 협력해여 <mark class="highlight-blue_background"><strong>(비동기 작업 관리)</strong></mark></li></ul><ul id="d1f725f2-7526-4dc2-ad3f-007763fdc230" class="bulleted-list"><li style="list-style-type:disc">문제가 생겨도 당황하지 않고 해결할 수 있음 <mark class="highlight-blue_background"><strong>(에라 처리 용이)</strong></mark></li></ul><ul id="860246ed-1e01-4b53-9ac3-7c81f323ea87" class="bulleted-list"><li style="list-style-type:disc">여러가지 재미있는 일을 연달아 할 수 있어요 <mark class="highlight-blue_background"><strong>(체이닝 가능)</strong></mark></li></ul></li></ol><ol type="1" id="7deadc5f-31fa-4dcf-ab01-834b40760a1a" class="numbered-list" start="5"><li>실제 생활에서는 : 컴퓨터 프로그램에서 시간이 좀 걸리는 일을 할 때, 이 일을 프라미스화해서 더 잘 관리할 수 있음</li></ol><p id="33162221-098f-4e2b-a6c4-4c9ece8dcf28" class="">
+</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="7b6cd7f2-45ad-4ce3-a9fe-535e66ae4faa"><div style="font-size:1.5em"><span class="icon">🔥</span></div><div style="width:100%">프라미스화는 평범한 작업들을 특별하고 관리하기 쉬운 마법 작업으로 바꾸는 것</div></figure><p id="5611c888-81c9-487f-8ffd-1626285f12b3" class="">
+</p><p id="978f2cbd-84a5-4384-96ae-5bce266d0be1" class="">
+</p><h1 id="b8564ed6-acdc-48e6-a660-854ee53485f6" class="">📌  마이크로테스크</h1><p id="e0cf6ffc-344a-4ed2-9261-a58b020dc0c6" class="">프라미스 핸들러 <code>.then</code> <code>.catch</code> <code>.finally</code>는 항상 비동기적으로 실행</p><p id="5817c1fe-3eca-4a2b-9f89-b46e54e3a7a5" class="">
+</p><p id="7651f0ce-fafb-4de0-8c49-3afe04b09f26" class="">프라미스가 즉시 이행되더라도 <code>.then</code> <code>.catch</code> <code>.finally</code> 아래 있는 코드는 이 핸들러들이 실행되기 전에 실행 됨</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="351a8fe8-4792-4dcb-83bb-ec74d2107fbb" class="code"><code class="language-JavaScript">let promise = Promise.resolve();
+
+promise.then(() =&gt; alert(&quot;프라미스 성공!&quot;));
+
+alert(&quot;코드 종료&quot;);</code></pre><ol type="1" id="cce98fd1-b71c-49a3-b337-5e9404571cf0" class="numbered-list" start="1"><li>alert 창이 가장 먼저 뜸</li></ol><ol type="1" id="94eefbc7-fec2-45d3-ab88-02bf206e6dbd" class="numbered-list" start="2"><li>“프라미스 성공!”이 나중에 출력</li></ol><p id="7252a090-a941-4761-b096-705eb1ae98e4" class="">
+</p><h3 id="f83f5a49-8cad-45e4-923d-fd923ee702fb" class="">마이크로태스크 큐</h3><p id="7fcff9a0-1fca-4135-94cb-695fad24bd19" class="">비동기 작업을 처리하려면 적절한 관리가 필요해요~~~</p><p id="e6b4c172-c14b-4aa5-8aba-55f1f4c03410" class="">그러기 위해서는 ECMA에서 <code>PromiseJobs</code>라는 내부 큐를 명시함 V8 엔진에서는 이를 <mark class="highlight-blue_background"><strong>‘마이크로태스크 큐’</strong></mark>라고 부르기 때문에 이 용어가 좀 더 선호됨</p><p id="ddcadfaa-efe3-43b3-8e3f-7d431ac741af" class="">
+</p><h3 id="60649314-b9d5-449e-b063-f762204f7e69" class="">명세서 설명</h3><ul id="bf311804-c6da-4cef-8403-9f6bff46ce43" class="bulleted-list"><li style="list-style-type:disc">마이크로태스크 큐는 먼저 들어온 작업을 먼저 실행</li></ul><ul id="96ea8f6a-f97e-444d-91ff-87039dca0498" class="bulleted-list"><li style="list-style-type:disc">실행할 것이 아무것도 남아있지 않을 때만 마이크로태스크 큐에 있는 작업이 실행되기 시작</li></ul><p id="f4b60042-6fbb-4f2c-9920-d447d433413f" class="">
+</p><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="2c02444f-2cbe-4498-98a8-823b4b40e481"><div style="font-size:1.5em"><span class="icon">🔥</span></div><div style="width:100%">어떤 프라미스가 준비되었을 때 이 프라미스의 <code>.then</code> <code>.catch</code> <code>.finally</code> 핸들러가 큐에 들어간다고 이해하기!!<br/><br/>이때 핸들러들은 여전히 실행되지 않음<br/><br/>현재 코드에서 자유로운 상태가 되었을 때에서야 자바스크립트 엔진은 큐에서 작업을 꺼내 실행함<br/></div></figure><p id="81672f44-002a-4156-a82f-39c43e5baaa7" class="">
+</p><blockquote id="bda31f87-b91e-4c77-9479-a33f5875b173" class="">“프라미스 성공!”을 먼저 출력되게 하려면?</blockquote><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="af7885c0-ba49-4c49-9f63-a479e28b2faf" class="code"><code class="language-JavaScript">let promise = Promise.resolve();
+
+promise.then(() =&gt; alert(&quot;프라미스 성공!&quot;));
+
+alert(&quot;코드 종료&quot;);</code></pre><p id="d4baf359-fd97-4341-87f6-4cbfb19de1bb" class=""><code>.then</code>을 사용해 큐에 넣기!!</p><p id="73ab2c0a-098f-4584-8763-a53f20494d8f" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
